@@ -1,6 +1,7 @@
 import pandas as pd
+import numpy as np
 
-from data_preprocessing import drop_columns
+from .data_preprocessing import drop_columns,clean_null_values,  clean_duplicate_values, to_lower_case, remove_special_characters
 
 def test_drop_columns():
     # Create a sample DataFrame for testing
@@ -21,3 +22,69 @@ def test_drop_columns():
 
     # Check if the shape of the DataFrame is correct after dropping columns
     assert result.shape == (3, 1)
+
+def test_clean_null_values():
+    # Create a sample DataFrame for testing
+    data = pd.DataFrame({'A': [1, 2, 3], 'B': [4, np.nan, 6], 'C': [np.nan, 8, 9]})
+
+    # Call the clean_null_values function
+    result = clean_null_values(data)
+
+    # Check if rows with null values are printed
+    assert result.shape[0] == 1
+
+    # Check if null values are removed from the DataFrame
+    assert result.isnull().sum().sum() == 0
+
+    # Check if the shape of the DataFrame is correct after removing null values
+    assert result.shape == (1, 3)
+
+def test_clean_duplicate_values():
+    # Create a sample DataFrame for testing
+    data = pd.DataFrame({'A': ['order', 'technical', 'order'], 'B': ['help','power','help'], 'C': ['okay', 'button', 'okay']})
+
+    # Call the clean_duplicate_values function
+    result = clean_duplicate_values(data)
+
+    # Check if duplicate rows are printed
+    assert result.shape[0] == 2
+
+    # Check if duplicate values are removed from the DataFrame
+    assert result.duplicated().sum() == 0
+
+    # Check if the shape of the DataFrame is correct after removing duplicate values
+    assert result.shape == (2, 3)
+
+def test_to_lower_case():
+    # Create a sample DataFrame for testing
+    data = pd.DataFrame({'A': ['Hello', 'WORLD'], 'B': ['Python', 'PROGRAMMING']})
+
+    # Call the to_lower_case function
+    result = to_lower_case(data)
+
+    # Check if the values in column A are converted to lowercase
+    assert result['A'].tolist() == ['hello', 'world']
+
+    # Check if the values in column B are converted to lowercase
+    assert result['B'].tolist() == ['python', 'programming']
+
+    # Check if the shape of the DataFrame is unchanged
+    assert result.shape == (2, 2)
+    
+def test_remove_special_characters():
+    # Create a sample DataFrame for testing
+    data = pd.DataFrame({'A': ['Hello!', 'How are you?\n'], 'B': ['I am fine.', 'Thank you!']})
+
+    # Call the remove_special_characters function
+    result = remove_special_characters(data)
+
+    # Check if special characters are removed from column A
+    assert result['A'].tolist() == ['Hello', 'How are you']
+
+    # Check if special characters are removed from column B
+    assert result['B'].tolist() == ['I am fine', 'Thank you']
+
+    # Check if the shape of the DataFrame is unchanged
+    assert result.shape == (2, 2)
+    
+
