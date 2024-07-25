@@ -7,7 +7,10 @@
 ## Run Tests
 
 To run all tests: `pytest -v task1 task2 task3`
+
 To run for each assessment task e.g: `pytest -v task1`
+
+The Jenkinsfile will enable the tests to run as part of a CI/CD pipeline
 
 ## Task 1 - Data Quality Assurance
 
@@ -46,5 +49,7 @@ To run tests: `pytest -v task2`
 To run FastAPI: `fastapi dev task3/api.py`
 
 **Tests**: `task3/test_api.py`
+
+A test suite for the `/query` endpoint that handles user queries.
 
 To run tests: `pytest -v task3`
