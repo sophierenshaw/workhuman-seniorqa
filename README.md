@@ -1,4 +1,4 @@
-# WorkHuma Senior QA Engineer (AI) Technical Assessment
+# WorkHuman Senior QA Engineer (AI) Technical Assessment
 
 ## Configure Project
 
