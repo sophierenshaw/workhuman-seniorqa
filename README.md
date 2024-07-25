@@ -31,16 +31,17 @@ To run tests: `pytest -v task1`
 
 **Python Script:** `task2/model_performance.py` is used to generated performance metrics for the selected sample classification dataset & model. 
 
-To run script: `python task2/model_performance.py `
+To run script: `python task2/model_performance.py`
+
+This will generate performance metrics for a basic model & dataset which has been split into a train, test and validation for cross-validation. Performance metrics will be calculated for the test and validation set and written to the task2/outputs/model_metrics.txt
+
+The script also validates the model outputs against a set of predefined queries and expected responses. A pre-defined context is passed to the model along with the question. The responses that are genererated are written to the task2/output/model_answers.txt for review and oversight which is necessary for human in the loop validation.
 
 **Tests**: `task2/test_model_performance.py`
 
 To run tests: `pytest -v task2`
 
-
-
 ## Task 3 - API Endpoint Testing
-
 
 To run FastAPI: `fastapi dev task3/api.py`
 
