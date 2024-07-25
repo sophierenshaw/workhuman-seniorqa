@@ -24,7 +24,7 @@ The dataset consists of 659 rows.
 
 To run script: `python task1/data_preprocessing.py`
 
-The script uses numoy, pandas and scikit-learn.
+The script uses numpy, pandas and scikit-learn.
 
 This script cleans and preprocesses the E-Commerce_FAQs dataset to produced a cleaned data CSV which is exported to the task1/output/cleaned_data.csv file. The script removes uneccesary columns to leave only category, question and answer. It removes NULL values, removes duplicates, converts all strings to lower case and removes all special characters. 
 
