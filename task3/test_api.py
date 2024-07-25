@@ -41,6 +41,12 @@ def test_query_with_valid_input_mocked_db():
     assert response.status_code == 200
     assert data["answer"] == "To reset your device to factory settings, go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'. Confirm the reset by following the on-screen instructions. Please note that this will erase all data on the device."
 
+#Test for nonexistent query
+def test_read_nonexistent_item():
+    response = client.get("/query/How do I connect to WiFi?")
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Item not found"}
+
 #Test for valid query parameter with sqlite database
 def test_query_with_valid_input_sql_db():    
     response = client.get("/query/sql/How do I reset my device to factory settings?")

@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np
 from sklearn import datasets
 
-import pandas as pd
-
 #Read data from HuggingFace into Pandas DataFrame
 df = pd.read_csv("hf://datasets/NebulaByte/E-Commerce_FAQs/FAQs.csv")
 

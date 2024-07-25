@@ -3,11 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String
 from sqlalchemy.orm import Session
-
-from pydantic import BaseModel, Field
 
 #creating a mocked database
 mocked_db = {
@@ -35,6 +32,7 @@ def get_db():
 #Schema for the query
 class QueryBase(BaseModel):
     query: str
+    answer: str
 
 class Query(QueryBase):
     query: str 
