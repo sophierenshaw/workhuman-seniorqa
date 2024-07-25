@@ -4,26 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your code from the repository
-                // Replace the repository URL with your own
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/your-repo.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/sophierenshaw/workhuman-seniorqa.git']]])
             }
         }
         
-        stage('Build') {
-            steps {
-                // Build your project (if necessary)
-                // Replace the build command with your own
-                sh 'mvn clean install'
-            }
-        }
-        
-        stage('Run Tests') {
-            steps {
-                // Run your tests
-                // Replace the test command with your own
-                sh 'mvn test'
-            }
-        }
+        stage('Unit Tests'){ 
+                steps{
+                    dir('.') {
+                        sh '. ./venv/bin/activate'
+                        sh 'pip install -r requirements.txt'
+                        sh 'pytest -v task1 task2 task3'
+                    }           
+                    }                    
+                }  
     }
 }
