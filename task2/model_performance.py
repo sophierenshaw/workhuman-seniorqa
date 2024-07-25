@@ -4,32 +4,58 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 from sklearn import datasets
 
+#splitting data into train, test & validation sets - validation only to be used as a final check of the models performance
+def cross_validation(X, y, test_size, random_state, val_size):
+    #splitting the data into training and testing data (80% training, 20% testing)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+    #splitting the training data into training and validation data (75% training, 25% validation (20% of the original data))
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=val_size, random_state=random_state) 
+
+    print(f"Training data size: {len(X_train)}")
+    print(f"Testing data size: {len(X_test)}")
+    print(f"Validation data size: {len(X_val)}")
+
+    return X_train, X_test, X_val, y_train, y_test, y_val
+
+#generating model metrics
+def model_performance(label, prediction):
+    accuracy = accuracy_score(label, prediction)
+    precision = precision_score(label, prediction, average='micro')
+    recall = recall_score(label, prediction, average='micro')
+    f1 = f1_score(label, prediction, average='micro')
+    return accuracy, precision, recall, f1
+
 X, y = datasets.load_iris(return_X_y=True) #placeholder data for now...
 print(X.shape, y.shape)
 
-#splitting data into train, test & validation sets - validation only to be used as a final check of the models performance
-#splitting the data into training and testing data (80% training, 20% testing)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
-#splitting the training data into training and validation data (75% training, 25% validation (20% of the original data))
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1) 
+#generate the train, test & validation datasets
+X_train, X_test, X_val, y_train, y_test, y_val = cross_validation(X, y, 0.2, 42, 0.25)
 
-print(f"Training data size: {len(X_train)}")
-print(f"Testing data size: {len(X_test)}")
-
+#select the model & fit the training data to it
 model = GaussianNB()
-
 model.fit(X_train, y_train)
 
+#predict on the test data
 y_pred = model.predict(X_test)
+#calculate metrics for test data
+accuracy, precision, recall, f1 = model_performance(y_test, y_pred)
 
-def model_performance(y_test, y_pred):
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='micro')
-    recall = recall_score(y_test, y_pred, average='micro')
-    f1 = f1_score(y_test, y_pred, average='micro')
-    return accuracy, precision, recall, f1
+print("Model Performance (Test Set):")
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")  
+print(f"F1 Score: {f1}")
 
-model_performance(y_test, y_pred)
+#predict on the validation data
+y_pred = model.predict(X_val)
+#calculate metrics for validation data
+accuracy, precision, recall, f1 = model_performance(y_val, y_pred)
+
+print("Model Performance (Validation Set):")
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")  
+print(f"F1 Score: {f1}")
 
 questions = [
     "1. How can I reset my device to factory settings?",

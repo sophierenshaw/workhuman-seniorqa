@@ -1,6 +1,31 @@
 from fastapi.testclient import TestClient
 
-from .api import app
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import StaticPool
+
+from .api import app, get_db, Base
+
+SQLALCHEMY_DATABASE_URL = "sqlite://"
+
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    connect_args={"check_same_thread": False},
+    poolclass=StaticPool,
+)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base.metadata.create_all(bind=engine)
+
+
+def override_get_db():
+    try:
+        db = TestingSessionLocal()
+        yield db
+    finally:
+        db.close()
+
+app.dependency_overrides[get_db] = override_get_db
 
 client = TestClient(app)
 
@@ -8,6 +33,13 @@ def test_query_with_valid_input():
     response = client.get("/query?query=Hello")
     assert response.status_code == 200
     assert response.json() == {"message": f"Query received: Hello"}
+
+def test_query_with_valid_input_mocked_db():    
+    response = client.get("/query/query1")
+    data = response.json()
+    print(data)
+    assert response.status_code == 200
+    assert data["answer"] == "To reset your device to factory settings, go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'. Confirm the reset by following the on-screen instructions. Please note that this will erase all data on the device."
 
 def test_query_with_empty_input():
     response = client.get("/query?query=")

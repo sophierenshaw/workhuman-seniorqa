@@ -62,10 +62,8 @@ def test_to_lower_case():
     # Call the to_lower_case function
     result = to_lower_case(data)
 
-    # Check if the values in column A are converted to lowercase
+    # Check if the values in columns are converted to lowercase
     assert result['A'].tolist() == ['hello', 'world']
-
-    # Check if the values in column B are converted to lowercase
     assert result['B'].tolist() == ['python', 'programming']
 
     # Check if the shape of the DataFrame is unchanged
@@ -78,10 +76,8 @@ def test_remove_special_characters():
     # Call the remove_special_characters function
     result = remove_special_characters(data)
 
-    # Check if special characters are removed from column A
+    # Check if special characters are removed from columns
     assert result['A'].tolist() == ['Hello', 'How are you']
-
-    # Check if special characters are removed from column B
     assert result['B'].tolist() == ['I am fine', 'Thank you']
 
     # Check if the shape of the DataFrame is unchanged
