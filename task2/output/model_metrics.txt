@@ -1,0 +1,12 @@
+Model Metrics for sklean dataset with GaussianNB():
+Model Performance (Test Set):
+Accuracy: 0.9666666666666667
+Precision: 0.9666666666666667
+Recall: 0.9666666666666667
+F1 Score: 0.9666666666666667
+
+Model Performance (Validation Set):
+Accuracy: 0.9666666666666667
+Precision: 0.9666666666666667
+Recall: 0.9666666666666667
+F1 Score: 0.9666666666666667

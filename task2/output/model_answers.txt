@@ -1,0 +1,16 @@
+Model Answers for predefined queries:
+Question: How can I reset my device to factory settings?
+Answer: [{'generated_text': 'Use a syncing tool to reset the device to factory settings.'}]
+
+Question: What should I do if my device won't turn on?
+Answer: [{'generated_text': 'Wait for the device to turn on.'}]
+
+Question: How do I update the firmware on my device?
+Answer: [{'generated_text': 'Use the chatbot to update the firmware on your device.'}]
+
+Question: Why is my device not connecting to Wi-Fi?
+Answer: [{'generated_text': 'Wi-Fi'}]
+
+Question: How can I improve the battery life of my device?
+Answer: [{'generated_text': 'Use a swab of a swab of a'}]
+
