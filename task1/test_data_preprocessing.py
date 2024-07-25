@@ -57,28 +57,28 @@ def test_clean_duplicate_values():
 
 def test_to_lower_case():
     # Create a sample DataFrame for testing
-    data = pd.DataFrame({'A': ['Hello', 'WORLD'], 'B': ['Python', 'PROGRAMMING']})
+    data = pd.DataFrame({'A': ['Order', 'HELP'], 'B': ['Technical', 'SUPPORT']})
 
     # Call the to_lower_case function
     result = to_lower_case(data)
 
     # Check if the values in columns are converted to lowercase
-    assert result['A'].tolist() == ['hello', 'world']
-    assert result['B'].tolist() == ['python', 'programming']
+    assert result['A'].tolist() == ['order', 'help']
+    assert result['B'].tolist() == ['technical', 'support']
 
     # Check if the shape of the DataFrame is unchanged
     assert result.shape == (2, 2)
     
 def test_remove_special_characters():
     # Create a sample DataFrame for testing
-    data = pd.DataFrame({'A': ['Hello!', 'How are you?\n'], 'B': ['I am fine.', 'Thank you!']})
+    data = pd.DataFrame({'A': ['Hello!', 'How can I reset my phone?\n'], 'B': ["go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'",'Confirm the reset by following the on-screen instructions!']})
 
     # Call the remove_special_characters function
     result = remove_special_characters(data)
 
     # Check if special characters are removed from columns
-    assert result['A'].tolist() == ['Hello', 'How are you']
-    assert result['B'].tolist() == ['I am fine', 'Thank you']
+    assert result['A'].tolist() == ['Hello', 'How can I reset my phone']
+    assert result['B'].tolist() == ['go to Settings  System  Reset  Factory data reset', 'Confirm the reset by following the onscreen instructions']
 
     # Check if the shape of the DataFrame is unchanged
     assert result.shape == (2, 2)
