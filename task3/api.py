@@ -6,6 +6,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, String
 from sqlalchemy.orm import Session
 
+from pydantic import BaseModel
+
 #creating a mocked database
 mocked_db = {
     "query": "How do I reset my device to factory settings?", "answer": "To reset your device to factory settings, go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'. Confirm the reset by following the on-screen instructions. Please note that this will erase all data on the device.",
