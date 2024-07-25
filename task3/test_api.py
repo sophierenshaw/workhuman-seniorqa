@@ -43,7 +43,7 @@ def test_query_with_valid_input_mocked_db():
 
 #Test for valid query parameter with sqlite database
 def test_query_with_valid_input_sql_db():    
-    response = client.get("/query/db/How do I reset my device to factory settings?")
+    response = client.get("/query/sql/How do I reset my device to factory settings?")
     data = response.json()
     assert response.status_code == 200
     assert data["answer"] == "To reset your device to factory settings, go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'. Confirm the reset by following the on-screen instructions. Please note that this will erase all data on the device."
