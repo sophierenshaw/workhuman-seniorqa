@@ -16,7 +16,7 @@ The Jenkinsfile will enable the tests to run as part of a CI/CD pipeline
 
 Dataset: https://huggingface.co/datasets/NebulaByte/E-Commerce_FAQs
 
-This dataset consists of a number of question & answers for an E-commerce website. The dataset has 6 features:
+This dataset consists of a number of question & answers for an E-commerce website. The dataset has 8 features:
 parent_category, category_id, category, question_id, question, answer, faq_url and que_ans. 
 The dataset consists of 659 rows.
 
