@@ -35,11 +35,19 @@ def test_query_with_valid_input():
     assert response.json() == {"message": f"Query received: Hello"}
 
 def test_query_with_valid_input_mocked_db():    
-    response = client.get("/query/query1")
+    response = client.get("/query/How do I reset my device to factory settings?")
     data = response.json()
     print(data)
     assert response.status_code == 200
     assert data["answer"] == "To reset your device to factory settings, go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'. Confirm the reset by following the on-screen instructions. Please note that this will erase all data on the device."
+
+def test_query_with_valid_input_sql_db():    
+    response = client.get("/query/db/How do I reset my device to factory settings?")
+    data = response.json()
+    print(data)
+    assert response.status_code == 200
+    assert data["answer"] == "To reset your device to factory settings, go to 'Settings' > 'System' > 'Reset' > 'Factory data reset'. Confirm the reset by following the on-screen instructions. Please note that this will erase all data on the device."
+
 
 def test_query_with_empty_input():
     response = client.get("/query?query=")
