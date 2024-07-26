@@ -54,7 +54,7 @@ To run FastAPI: `fastapi dev task3/api.py`
 
 This script contains a number of GET endpoints, including one with a mocked database and one with an SQLite database. 
 The GET /query request takes a string as the query param and will throw a 400 error if there is no parameter provided. 
-The GET /query/{query} request queries the mocked db and will throw a 400 error if the query parameter is not provided and a 404 if it's not found Further work needed on this as tests are failing. 
+The GET /query/{query} request queries the mocked db and will throw a 400 error if the query parameter is not provided and a 404 if it's not found. Further work needed on this as tests are failing. 
 The GET /query/sql/{query} request queries an SQLite db and will throw a 400 error if the query parameter is not provided and a 404 if it's not found. Further work needed on this as tests are failing. 
 
 **Tests**: `task3/test_api.py`
